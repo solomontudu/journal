@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as genId } from "uuid";
 import "./App.css";
 import Create from "./components/Create";
 import Home from "./components/Home";
@@ -40,11 +41,23 @@ const emptyData = [];
 
 function App() {
   const [page, setPage] = useState("home");
-  const [suspense, setSuspense] = useState(data);
+  const [suspense, setSuspense] = useState([]);
 
   function handleDelete(id) {
     const newSuspense = suspense.filter((txn) => txn.id !== id);
     setSuspense(newSuspense);
+  }
+
+  function handleAddItem(name, description, amount) {
+    const id = genId();
+    const now = Date.now();
+
+    setSuspense((suspense) => [
+      ...suspense,
+      { id, name, date: now, description, amount },
+    ]);
+
+    console.log(suspense);
   }
 
   return (
@@ -52,7 +65,7 @@ function App() {
       <Navigation setPage={setPage} page={page} />
 
       {page === "home" && <Home suspense={suspense.length} setPage={setPage} />}
-      {page === "create" && <Create />}
+      {page === "create" && <Create handleAddItem={handleAddItem} />}
       {page === "list" && (
         <List
           setSuspense={setSuspense}

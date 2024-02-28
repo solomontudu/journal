@@ -1,7 +1,15 @@
-export default function ListItem({ id, date, name, reason, amount, handleDelete }) {
-  const dayMonth = date.substr(0,5);
-  const year = date.substr(date.length - 4,4);
+export default function ListItem({
+  id,
+  date,
+  name,
+  reason,
+  amount,
+  handleDelete,
+}) {
+  const suspenseDate = new Date(date);
+  let dayMonth = `${suspenseDate.getDate()}-${suspenseDate.getMonth()}`;
 
+  const year = new Date(date).getFullYear();
 
   return (
     <div className="listItem">
