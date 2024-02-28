@@ -1,17 +1,18 @@
 import ListItem from "./ListItem";
 
-export default function List({ suspense }) {
+export default function List({ suspense, handleDelete }) {
   return (
     <div className="list">
-      {suspense ? (
+      {suspense.length ? (
         suspense.map((txn) => (
           <ListItem
             key={txn.id}
             id={txn.id}
             name={txn.name}
-            date={new Date().getFullYear}
+            date={txn.date}
             reason={txn.reason}
             amount={txn.amount}
+            handleDelete={handleDelete}
           />
         ))
       ) : (

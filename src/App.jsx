@@ -8,28 +8,28 @@ import Navigation from "./components/Navigation";
 const data = [
   {
     id: 1,
-    date: "18-1-24",
+    date: "18-01-2024",
     name: "Mithun Khadka",
     reason: "Buying farm supplies",
     amount: 12500,
   },
   {
     id: 2,
-    date: "19-1-24",
+    date: "19-01-2024",
     name: "Major Shimray",
     reason: "Buying school supplies",
     amount: 30500,
   },
   {
     id: 3,
-    date: "1-2-24",
+    date: "01-02-2024",
     name: "Solomon Tudu",
     reason: "Bank travel expense",
     amount: 2000,
   },
   {
     id: 4,
-    date: "10-2-24",
+    date: "10-02-2024",
     name: "Roben Mardi",
     reason: "Vehicle fuel",
     amount: 5000,
@@ -39,8 +39,13 @@ const data = [
 const emptyData = [];
 
 function App() {
-  const [page, setPage] = useState("list");
-  const [suspense, setSuspense] = useState(emptyData);
+  const [page, setPage] = useState("home");
+  const [suspense, setSuspense] = useState(data);
+
+  function handleDelete(id) {
+    const newSuspense = suspense.filter((txn) => txn.id !== id);
+    setSuspense(newSuspense);
+  }
 
   return (
     <div className="window">
@@ -49,7 +54,11 @@ function App() {
       {page === "home" && <Home suspense={suspense.length} setPage={setPage} />}
       {page === "create" && <Create />}
       {page === "list" && (
-        <List setSuspense={setSuspense} suspense={suspense} />
+        <List
+          setSuspense={setSuspense}
+          suspense={suspense}
+          handleDelete={handleDelete}
+        />
       )}
     </div>
   );

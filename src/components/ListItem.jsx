@@ -1,10 +1,13 @@
-export default function ListItem({ id, date, name, reason, amount }) {
+export default function ListItem({ id, date, name, reason, amount, handleDelete }) {
+  const dayMonth = date.substr(0,5);
+  const year = date.substr(date.length - 4,4);
+
 
   return (
     <div className="listItem">
       <div className="listItem-header">
-        <p>{`1-02`}</p>
-        <span>{`year`}</span>
+        <p>{dayMonth}</p>
+        <span>{year}</span>
       </div>
       <div className="listItem-details">
         <div>
