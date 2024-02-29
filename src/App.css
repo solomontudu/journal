@@ -195,3 +195,5 @@ button {
   height: var(--dimentions);
   transform: translateX(calc(var(--dimentions) / 5));
 }
+
+/* no items section */

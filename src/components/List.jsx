@@ -6,13 +6,13 @@ export default function List({ suspense, handleDelete }) {
       {suspense.length ? (
         suspense.map((txn) => (
           <ListItem
-            key={txn.id}
-            id={txn.id}
-            name={txn.name}
-            date={txn.date}
-            reason={txn.reason}
-            amount={txn.amount}
-            handleDelete={handleDelete}
+          id={txn.id}
+          name={txn.name}
+          date={txn.date}
+          reason={txn.reason}
+          amount={txn.amount}
+          handleDelete={handleDelete}
+          key={txn.id}
           />
         ))
       ) : (

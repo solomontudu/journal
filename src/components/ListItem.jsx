@@ -7,7 +7,7 @@ export default function ListItem({
   handleDelete,
 }) {
   const suspenseDate = new Date(date);
-  let dayMonth = `${suspenseDate.getDate()}-${suspenseDate.getMonth()}`;
+  let dayMonth = `${suspenseDate.getDate()}-${suspenseDate.getMonth() + 1}`;
 
   const year = new Date(date).getFullYear();
 

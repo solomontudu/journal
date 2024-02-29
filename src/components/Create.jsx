@@ -2,31 +2,16 @@ import { useState } from "react";
 
 export default function Create({ handleAddItem }) {
   const [name, setName] = useState();
-  // const [date, setDate] = useState();
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
 
   function formValidate(e) {
     e.preventDefault();
 
-    const curSuspense = {
-      name,
-      // date,
-      description,
-      amount,
-    };
-
+    handleAddItem(name, description, amount);
     setName("");
-    // setDate("");
     setDescription("");
     setAmount(0);
-
-    handleAddItem(
-      curSuspense.name,
-      // curSuspense.date,
-      curSuspense.description,
-      curSuspense.amount
-    );
   }
 
   return (
@@ -42,10 +27,11 @@ export default function Create({ handleAddItem }) {
       </div>
       <div>
         <input
+          type="text"
+          placeholder="For what?"
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Why is the suspense being given out?"
         />
       </div>
       <div>

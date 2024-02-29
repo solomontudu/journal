@@ -50,11 +50,11 @@ function App() {
 
   function handleAddItem(name, description, amount) {
     const id = genId();
-    const now = Date.now();
+    const date = Date.now();
 
     setSuspense((suspense) => [
       ...suspense,
-      { id, name, date: now, description, amount },
+      { id, date, name, reason: description, amount },
     ]);
 
     console.log(suspense);
