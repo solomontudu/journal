@@ -3,10 +3,19 @@ export default function Home({ suspense, setPage }) {
     setPage("list");
   }
 
+  /**
+   * Changes the page to the "create" page.
+   */
   function handleCreate() {
     setPage("create");
   }
 
+  /**
+   * Renders the home page UI.
+   *
+   * Displays a main card for opening suspense and a secondary card for creating suspense.
+   * Both cards render SVG icons and text, and call handler functions on click.
+   */
   return (
     <div className="home">
       <div className="suspense-card main-card" onClick={handleShow}>

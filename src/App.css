@@ -13,6 +13,8 @@
   align-items: center;
   justify-content: center;
 
+  overflow-y: scroll;
+
   color: #fff;
 }
 
@@ -72,6 +74,8 @@
   background-color: var(--bg-light);
   width: 550px;
   padding: 1em;
+
+  margin-bottom: 2em;
 }
 
 .create div {
@@ -112,6 +116,8 @@ button {
   padding: var(--padding);
   transition: background-color 0.2s ease;
   cursor: pointer;
+
+  width: 550px;
 }
 
 .listItem:hover {
@@ -197,3 +203,30 @@ button {
 }
 
 /* no items section */
+.no-items {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease-in-out;
+  background-color: var(--bg-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  /* border: 2px solid rgb(99, 99, 99); */
+}
+
+.no-items:hover {
+  background-color: rgba(212, 63, 25, 0.275);
+}
+
+.no-items p {
+  font-size: 1.3rem;
+}
+
+@keyframes appear {
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -40,7 +40,7 @@ const data = [
 const emptyData = [];
 
 function App() {
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState("list");
   const [suspense, setSuspense] = useState([]);
 
   function handleDelete(id) {
@@ -65,12 +65,19 @@ function App() {
       <Navigation setPage={setPage} page={page} />
 
       {page === "home" && <Home suspense={suspense.length} setPage={setPage} />}
-      {page === "create" && <Create handleAddItem={handleAddItem} />}
+      {page === "create" && (
+        <Create
+          handleAddItem={handleAddItem}
+          suspense={suspense}
+          handleDelete={handleDelete}
+        />
+      )}
       {page === "list" && (
         <List
           setSuspense={setSuspense}
           suspense={suspense}
           handleDelete={handleDelete}
+          handleAddSuspense={() => setPage("create")}
         />
       )}
     </div>
