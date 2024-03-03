@@ -44,7 +44,16 @@ const form_clear_btn = {
   fill: "var(--red-light)",
 };
 
-export default function Navigation({ page, setPage }) {
+/**
+ * Navigation component renders a responsive navigation bar.
+ *
+ * It displays a home icon or logo when on the home page.
+ * On list pages it shows a search input.
+ * It conditionally shows the suspense count.
+ *
+ * @component
+ */
+export default function Navigation({ page, setPage, suspense }) {
   return (
     <nav style={nav}>
       <div>
@@ -68,7 +77,7 @@ export default function Navigation({ page, setPage }) {
             id="Layer_1"
             viewBox="0 0 512 512"
             xmlSpace="preserve"
-            style={{...logo, transform: "rotate(0deg)" }}
+            style={{ ...logo, transform: "rotate(0deg)" }}
             onClick={() => setPage("home")}
           >
             <g>
@@ -86,18 +95,20 @@ export default function Navigation({ page, setPage }) {
         )}
       </div>
 
-      <form action="" style={form}>
-        <input type="text" style={form_input} placeholder="Search..." />
-        <svg
-          fill="#000000"
-          width="800px"
-          height="800px"
-          viewBox="-1.7 0 20.4 20.4"
-          style={form_clear_btn}
-        >
-          <path d="M16.417 10.283A7.917 7.917 0 1 1 8.5 2.366a7.916 7.916 0 0 1 7.917 7.917zm-6.804.01 3.032-3.033a.792.792 0 0 0-1.12-1.12L8.494 9.173 5.46 6.14a.792.792 0 0 0-1.12 1.12l3.034 3.033-3.033 3.033a.792.792 0 0 0 1.12 1.119l3.032-3.033 3.033 3.033a.792.792 0 0 0 1.12-1.12z" />
-        </svg>
-      </form>
+      {page == "list" && suspense.length > 0 && (
+        <form action="" style={form}>
+          <input type="text" style={form_input} placeholder="Search..." />
+          <svg
+            fill="#000000"
+            width="800px"
+            height="800px"
+            viewBox="-1.7 0 20.4 20.4"
+            style={form_clear_btn}
+          >
+            <path d="M16.417 10.283A7.917 7.917 0 1 1 8.5 2.366a7.916 7.916 0 0 1 7.917 7.917zm-6.804.01 3.032-3.033a.792.792 0 0 0-1.12-1.12L8.494 9.173 5.46 6.14a.792.792 0 0 0-1.12 1.12l3.034 3.033-3.033 3.033a.792.792 0 0 0 1.12 1.119l3.032-3.033 3.033 3.033a.792.792 0 0 0 1.12-1.12z" />
+          </svg>
+        </form>
+      )}
     </nav>
   );
 }

@@ -49,6 +49,10 @@
   justify-content: center;
   background-color: #fff;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.suspense-card:hover {
+  transform: scale(1.02);
 }
 
 .suspense-card h1 {
@@ -114,10 +118,21 @@ button {
   border-radius: var(--radius-sm);
   margin-bottom: 10px;
   padding: var(--padding);
-  transition: background-color 0.2s ease;
+  transition: background-color transform 0.2s ease;
   cursor: pointer;
 
   width: 550px;
+
+  animation: entry 0.3s ease-in 0.3s;
+}
+
+@keyframes entry {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .listItem:hover {
@@ -204,21 +219,19 @@ button {
 
 /* no items section */
 .no-items {
-  width: 100%;
+  width: 550px;
   padding: 10px;
   border-radius: var(--radius-sm);
-  transition: background 0.2s ease-in-out;
+  transition: border 0.2s ease-in;
   background-color: var(--bg-light);
 
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
-  /* border: 2px solid rgb(99, 99, 99); */
 }
 
 .no-items:hover {
-  background-color: rgba(212, 63, 25, 0.275);
+  background-color: rgba(128, 128, 128, 0.475);
 }
 
 .no-items p {

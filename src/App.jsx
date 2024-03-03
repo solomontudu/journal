@@ -39,15 +39,43 @@ const data = [
 
 const emptyData = [];
 
+/**
+ * App component.
+ *
+ * Defines the main application component.
+ *
+ * Manages state for the current page being viewed,
+ * as well as the list of transactions (suspense array).
+ *
+ * Renders different page components based on current page.
+ *
+ * Contains handlers to add/delete transactions from suspense.
+ */
 function App() {
   const [page, setPage] = useState("list");
   const [suspense, setSuspense] = useState([]);
 
+  /**
+   * Deletes a transaction from suspense by id.
+   *
+   * Filters the suspense array to remove the object
+   * with the matching id. Updates suspense with
+   * the filtered array.
+   */
   function handleDelete(id) {
     const newSuspense = suspense.filter((txn) => txn.id !== id);
     setSuspense(newSuspense);
   }
 
+  /**
+   * Adds a new transaction item to the suspense array.
+   *
+   * Generates a new unique ID and current timestamp for the item.
+   * Uses the functional setSuspense update to append the new item object
+   * to the existing suspense array.
+   *
+   * Logs suspense array after update.
+   */
   function handleAddItem(name, description, amount) {
     const id = genId();
     const date = Date.now();
@@ -60,9 +88,16 @@ function App() {
     console.log(suspense);
   }
 
+  /**
+   * Renders different page components based on current page state.
+   *
+   * Uses conditional rendering to show Home, Create, or List page
+   * based on the 'page' state value. Passes necessary props like
+   * suspense, handlers etc. to each page component.
+   */
   return (
     <div className="window">
-      <Navigation setPage={setPage} page={page} />
+      <Navigation setPage={setPage} page={page} suspense={suspense} />
 
       {page === "home" && <Home suspense={suspense.length} setPage={setPage} />}
       {page === "create" && (
